@@ -13,6 +13,18 @@ const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
     { x: 60, y: 70 }, { x: 70, y: 70 }, { x: 80, y: 70 }, { x: 90, y: 70 }, { x: 100, y: 70 }
   ];
 
+  const handleClick = () => {
+    setPlayCount(c => c + 1);
+    // Haptic pattern: 15 short bursts matching each sigma pixel pop (50ms intervals)
+    if (navigator.vibrate) {
+      navigator.vibrate([
+        15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
+        15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
+        15, 35, 15, 35, 15, 35, 15, 35, 15
+      ]);
+    }
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +32,7 @@ const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
       className={className}
       style={{ display: 'block', maxWidth: '100%', height: 'auto', cursor: 'pointer', ...style }}
       onMouseEnter={() => setPlayCount(c => c + 1)}
+      onClick={handleClick}
     >
       <style>
         {`
