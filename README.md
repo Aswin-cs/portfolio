@@ -12,7 +12,7 @@ Welcome to my personal portfolio! This project is a highly interactive, 3D paral
   - `SkillsTerminal`: A responsive, code-editor-style terminal showcasing technical skills.
   - `ProjectCards`: An auto-playing, interactive carousel highlighting key projects.
   - `GithubProfile`: A 3D-styled, floating call-to-action for collaboration.
-- **Responsive Design**: Carefully crafted with `clamp()` and media queries to look stunning on both mobile devices and large desktop monitors.
+- **Responsive Design**: Carefully crafted with `clamp()` and media queries to look stunning on both mobile devices and large desktop monitors.portfolio
 - **Custom Silk Background**: A dynamic, animated background that sets a premium tone.
 
 ## 🛠️ Technology Stack
