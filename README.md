@@ -1,10 +1,10 @@
 # Aswin's Interactive Portfolio
 
-**🚀 Live Demo:** [https://aswin-portfolio-10.vercel.app/](https://aswin-portfolio-10.vercel.app/)
+**Live Demo:** [https://aswin-portfolio-10.vercel.app/](https://aswin-portfolio-10.vercel.app/)
 
 Welcome to my personal portfolio! This project is a highly interactive, 3D parallax web application built to showcase my skills, projects, and experience. It features immersive scrolling effects, physics-based animations, and a modern, responsive design.
 
-## 🌟 Features
+## Features
 
 - **Immersive Parallax Layout**: Built with `@react-spring/parallax` to create depth and a multi-layered scrolling experience.
 - **Physics-Based Animations**: Utilizes `react-spring` for smooth, natural-feeling animations, including hover effects, reveals, and carousels.
@@ -17,7 +17,7 @@ Welcome to my personal portfolio! This project is a highly interactive, 3D paral
 - **Responsive Design**: Carefully crafted with `clamp()` and media queries to look stunning on both mobile devices and large desktop monitors.portfolio
 - **Custom Silk Background**: A dynamic, animated background that sets a premium tone.
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Framework**: [Next.js](https://nextjs.org/) (App Router)
 - **Library**: [React](https://reactjs.org/)
@@ -26,7 +26,7 @@ Welcome to my personal portfolio! This project is a highly interactive, 3D paral
 - **Styling**: Vanilla CSS (No heavy CSS frameworks, just pure custom styles!)
 - **Typography**: 'Expletus Sans' via Google Fonts
 
-## 🚀 Getting Started
+## Getting Started
 
 First, install the dependencies:
 
@@ -50,17 +50,17 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) for local development, or view the live version at [https://aswin-portfolio-10.vercel.app/](https://aswin-portfolio-10.vercel.app/).
 
-## 📁 Project Structure
+## Project Structure
 
 - `app/page.js`: The main entry point containing the Parallax setup and layer orchestration.
 - `app/globals.css`: Global styles, CSS variables, and typography settings.
 - `app/Components/`: Contains all modular React components (e.g., `Backgrounds`, `ProjectCards`, `SkillsTerminal`, `GithubProfile`, `LogoLoop`).
 
-## 👏 Acknowledgments
+## Acknowledgments
 
 Special thanks to [React Bits](https://reactbits.dev/) for providing the excellent UI component inspiration, specifically the `LogoLoop` component used in the skills section!
 
-## 🤝 Let's Collaborate
+## Let's Collaborate
 
 Feel free to reach out or check out my work on GitHub:
 **GitHub**: [@Aswin-cs](https://github.com/Aswin-cs)

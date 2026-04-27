@@ -307,11 +307,11 @@ const Page = () => {
         }} title="Projects">
           <FontAwesomeIcon icon={faFolderOpen} title="Projects" />
         </div>
-        <div className="navbar-item" onClick={() => {
+        <div className="navbar-item navbar-logo " onClick={() => {
           lastPage.current = 3;
           parallaxRef.current.scrollTo(3);
         }} title="Contact & GitHub">
-          <AswinLogicLogo style={{ width: '1.2em', height: '1.2em', transform: 'scale(1.8)' }} color="currentColor" />
+          <AswinLogicLogo color="currentColor" />
         </div>
       </animated.div>
     </>

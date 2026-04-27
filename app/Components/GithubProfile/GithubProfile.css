@@ -15,10 +15,30 @@
   font-family: "Expletus Sans", sans-serif;
   font-size: clamp(3.5rem, 8vw, 6.5rem);
   font-weight: 800;
+  font-style: italic;
   letter-spacing: 0.2rem;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   text-align: center;
+}
+
+.sync-logic-letter {
+  opacity: 0.1;
+  animation: waveLetter 5s ease-in-out infinite;
+}
+
+@keyframes waveLetter {
+
+  0%,
+  20%,
+  100% {
+    opacity: 0.1;
+    text-shadow: none;
+  }
+
+  10% {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
 }
 
 .sync-logic-subheading {
@@ -83,16 +103,20 @@
   .sync-logic-heading {
     font-size: clamp(2.5rem, 6vw, 3.5rem);
   }
+
   .sync-logic-subheading {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     margin-bottom: 2rem;
   }
+
   .github-profile-box {
     padding: 1.2rem 1.8rem;
   }
+
   .github-icon {
     font-size: 2.8rem;
   }
+
   .github-username {
     font-size: 1.2rem;
   }

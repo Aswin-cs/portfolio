@@ -48,7 +48,17 @@ const GithubProfile = () => {
 
   return (
     <div ref={containerRef} className="github-profile-container">
-      <animated.h1 style={trail[0]} className="sync-logic-heading">SYNC_LOGIC</animated.h1>
+      <animated.h1 style={trail[0]} className="sync-logic-heading">
+        {"SYNC_LOGIC".split("").map((char, index) => (
+          <span 
+            key={index} 
+            className="sync-logic-letter"
+            style={{ animationDelay: `${index * 0.3}s` }}
+          >
+            {char}
+          </span>
+        ))}
+      </animated.h1>
       <animated.h3 style={trail[1]} className="sync-logic-subheading">Ready to collaborate with me? Let's build something amazing together.</animated.h3>
       
       <animated.div style={trail[2]} className="action-boxes">
