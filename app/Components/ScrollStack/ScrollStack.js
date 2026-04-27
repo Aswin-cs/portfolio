@@ -246,13 +246,43 @@ const ScrollStack = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    // Prevent wheel and touch events from bubbling up to Parallax's own listeners,
-    // which causes intense scroll-locking and friction conflicts.
-    const stopBubble = (e) => e.stopPropagation();
-    scroller.addEventListener('wheel', stopBubble, { passive: false });
-    scroller.addEventListener('touchstart', stopBubble, { passive: true });
-    scroller.addEventListener('touchend', stopBubble, { passive: true });
-    scroller.addEventListener('touchmove', stopBubble, { passive: true });
+    // Wheel: still stop unconditionally (mouse wheel is handled separately in page.js)
+    const stopWheelBubble = (e) => e.stopPropagation();
+    scroller.addEventListener('wheel', stopWheelBubble, { passive: false });
+
+    // Touch: only stop propagation when the scroller can still scroll internally.
+    // At the edges (top or bottom), let the event bubble up so page.js can snap layers.
+    const EDGE_THRESHOLD = 10;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+      // Don't stop propagation here — page.js needs touchstart to record its own startY.
+    };
+
+    const handleTouchEnd = (e) => {
+      const deltaY = touchStartY - e.changedTouches[0].clientY;
+      const atTop = scroller.scrollTop <= EDGE_THRESHOLD;
+      const atBottom =
+        Math.abs(scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight) <= EDGE_THRESHOLD;
+
+      // Swiping up (deltaY > 0) but already at bottom → let page.js handle it
+      // Swiping down (deltaY < 0) but already at top → let page.js handle it
+      const shouldBubble = (deltaY > 40 && atBottom) || (deltaY < -40 && atTop);
+
+      if (!shouldBubble) {
+        e.stopPropagation();
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      // Never let touchmove bubble; internal scrolling handles it.
+      e.stopPropagation();
+    };
+
+    scroller.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scroller.addEventListener('touchend', handleTouchEnd, { passive: true });
+    scroller.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     const cards = Array.from(
       useWindowScroll
@@ -288,10 +318,10 @@ const ScrollStack = ({
         lenisRef.current.destroy();
       }
       
-      scroller.removeEventListener('wheel', stopBubble);
-      scroller.removeEventListener('touchstart', stopBubble);
-      scroller.removeEventListener('touchend', stopBubble);
-      scroller.removeEventListener('touchmove', stopBubble);
+      scroller.removeEventListener('wheel', stopWheelBubble);
+      scroller.removeEventListener('touchstart', handleTouchStart);
+      scroller.removeEventListener('touchend', handleTouchEnd);
+      scroller.removeEventListener('touchmove', handleTouchMove);
 
       stackCompletedRef.current = false;
       cardsRef.current = [];

@@ -1,5 +1,7 @@
 # Aswin's Interactive Portfolio
 
+**🚀 Live Demo:** [https://aswin-portfolio-10.vercel.app/](https://aswin-portfolio-10.vercel.app/)
+
 Welcome to my personal portfolio! This project is a highly interactive, 3D parallax web application built to showcase my skills, projects, and experience. It features immersive scrolling effects, physics-based animations, and a modern, responsive design.
 
 ## 🌟 Features
@@ -46,7 +48,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for local development, or view the live version at [https://aswin-portfolio-10.vercel.app/](https://aswin-portfolio-10.vercel.app/).
 
 ## 📁 Project Structure
 
