@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AswinLogicLogo = ({ className = '', style = {}, color = 'currentColor' }) => {
+const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
   const [playCount, setPlayCount] = useState(0);
 
   const sigma = [
@@ -14,8 +14,8 @@ const AswinLogicLogo = ({ className = '', style = {}, color = 'currentColor' }) 
   ];
 
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
       viewBox="-10 -10 220 120"
       className={className}
       style={{ display: 'block', maxWidth: '100%', height: 'auto', cursor: 'pointer', ...style }}
@@ -61,27 +61,27 @@ const AswinLogicLogo = ({ className = '', style = {}, color = 'currentColor' }) 
           }
         `}
       </style>
-      
+
       {/* Brackets */}
-      <g className="al-bracket-group" fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+      <g className="al-bracket-group" fill="none" stroke={"#d5d5d5ff"} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
         <path d="M 45 10 L 15 40 L 45 70" />
         <path d="M 165 10 L 195 40 L 165 70" />
       </g>
 
       {/* Slash */}
-      <g className="al-slash-group" fill="none" stroke={color} strokeWidth="10" strokeLinecap="round">
+      <g className="al-slash-group" fill="none" stroke={"#d9d9d9c9"} strokeWidth="10" strokeLinecap="round">
         <path d="M 150 10 L 125 70" />
       </g>
 
       {/* Sigma */}
-      <g fill={color} key={`sigma-${playCount}`}>
+      <g fill={"#ffffffff"} key={`sigma-${playCount}`}>
         {sigma.map((p, i) => (
-          <rect 
-            key={`sig-${i}`} 
-            x={p.x} 
-            y={p.y} 
-            width="10" 
-            height="10" 
+          <rect
+            key={`sig-${i}`}
+            x={p.x}
+            y={p.y}
+            width="10"
+            height="10"
             className="al-sigma-pixel"
             style={{ animationDelay: `${(playCount === 0 ? 1.0 : 0) + i * 0.05}s` }}
           />
@@ -89,14 +89,14 @@ const AswinLogicLogo = ({ className = '', style = {}, color = 'currentColor' }) 
       </g>
 
       {/* Cursor */}
-      <rect 
+      <rect
         key={`cursor-${playCount}`}
-        className="al-cursor-pixel" 
-        x="60" 
-        y="90" 
-        width="50" 
-        height="10" 
-        fill={color} 
+        className="al-cursor-pixel"
+        x="60"
+        y="90"
+        width="50"
+        height="10"
+        fill={color}
         style={{ animationDelay: `${playCount === 0 ? 2.25 : 1.25}s` }}
       />
     </svg>

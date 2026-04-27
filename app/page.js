@@ -292,26 +292,26 @@ const Page = () => {
         <div className="navbar-item" onClick={() => {
           lastPage.current = 0;
           parallaxRef.current.scrollTo(0);
-        }}>
+        }} title="Home">
           <FontAwesomeIcon icon={faHome} title="Home" />
         </div>
         <div className="navbar-item" onClick={() => {
           lastPage.current = 1;
           parallaxRef.current.scrollTo(1);
-        }}>
+        }} title="Skills">
           <FontAwesomeIcon icon={faTerminal} title="Skills" />
         </div>
         <div className="navbar-item" onClick={() => {
           lastPage.current = 2;
           parallaxRef.current.scrollTo(2);
-        }}>
+        }} title="Projects">
           <FontAwesomeIcon icon={faFolderOpen} title="Projects" />
         </div>
         <div className="navbar-item" onClick={() => {
           lastPage.current = 3;
           parallaxRef.current.scrollTo(3);
-        }}>
-          <FontAwesomeIcon icon={faGithub} title="Contact & GitHub" />
+        }} title="Contact & GitHub">
+          <AswinLogicLogo style={{ width: '1.2em', height: '1.2em', transform: 'scale(1.8)' }} color="currentColor" />
         </div>
       </animated.div>
     </>
