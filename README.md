@@ -54,6 +54,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - `app/globals.css`: Global styles, CSS variables, and typography settings.
 - `app/Components/`: Contains all modular React components (e.g., `Backgrounds`, `ProjectCards`, `SkillsTerminal`, `GithubProfile`, `LogoLoop`).
 
+## 👏 Acknowledgments
+
+Special thanks to [React Bits](https://reactbits.dev/) for providing the excellent UI component inspiration, specifically the `LogoLoop` component used in the skills section!
+
 ## 🤝 Let's Collaborate
 
 Feel free to reach out or check out my work on GitHub:
