@@ -6,6 +6,7 @@ import LogoLoop from "./Components/LogoLoop/LogoLoop";
 import ProjectCards from "./Components/ProjectCards/ProjectCards";
 import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt, faGithub } from '@fortawesome/free-brands-svg-icons';
 import GithubProfile from "./Components/GithubProfile/GithubProfile";
+import AswinLogicLogo from "./Components/AswinLogicLogo/AswinLogicLogo";
 
 const techLogos = [
   { node: <FontAwesomeIcon icon={faReact} />, title: "React", href: "https://react.dev" },
@@ -175,8 +176,9 @@ const Page = () => {
         <ParallaxLayer
           offset={0}
           speed={0.5}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2vh' }}
         >
+          <AswinLogicLogo style={{ width: 'min(200px, 30vw)', marginBottom: '1rem' }} color="rgba(255, 255, 255, 0.8)" />
           <GlitchText
             speed={1}
             enableShadows={true}
@@ -277,8 +279,11 @@ const Page = () => {
         <ParallaxLayer
           offset={3}
           speed={0.5}
-          style={{ width: '100vw', height: '100vh' }}
+          style={{ width: '100vw', height: '100vh', position: 'relative' }}
         >
+          <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}>
+            <AswinLogicLogo style={{ width: 'min(150px, 25vw)' }} color="rgba(255, 255, 255, 0.6)" />
+          </div>
           <GithubProfile />
         </ParallaxLayer>
       </Parallax>
