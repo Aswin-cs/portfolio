@@ -1,8 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aswin's Interactive Portfolio
 
-## Getting Started
+Welcome to my personal portfolio! This project is a highly interactive, 3D parallax web application built to showcase my skills, projects, and experience. It features immersive scrolling effects, physics-based animations, and a modern, responsive design.
 
-First, run the development server:
+## 🌟 Features
+
+- **Immersive Parallax Layout**: Built with `@react-spring/parallax` to create depth and a multi-layered scrolling experience.
+- **Physics-Based Animations**: Utilizes `react-spring` for smooth, natural-feeling animations, including hover effects, reveals, and carousels.
+- **Custom UI Components**:
+  - `BorderGlow`: Animated, glowing gradient borders for project cards.
+  - `LogoLoop`: An infinite scrolling carousel for technology stack icons.
+  - `SkillsTerminal`: A responsive, code-editor-style terminal showcasing technical skills.
+  - `ProjectCards`: An auto-playing, interactive carousel highlighting key projects.
+  - `GithubProfile`: A 3D-styled, floating call-to-action for collaboration.
+- **Responsive Design**: Carefully crafted with `clamp()` and media queries to look stunning on both mobile devices and large desktop monitors.
+- **Custom Silk Background**: A dynamic, animated background that sets a premium tone.
+
+## 🛠️ Technology Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Library**: [React](https://reactjs.org/)
+- **Animations**: [`react-spring`](https://react-spring.dev/) & [`@react-spring/parallax`](https://react-spring.dev/docs/components/parallax)
+- **Icons**: [FontAwesome](https://fontawesome.com/)
+- **Styling**: Vanilla CSS (No heavy CSS frameworks, just pure custom styles!)
+- **Typography**: 'Expletus Sans' via Google Fonts
+
+## 🚀 Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +44,21 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.js`: The main entry point containing the Parallax setup and layer orchestration.
+- `app/globals.css`: Global styles, CSS variables, and typography settings.
+- `app/Components/`: Contains all modular React components (e.g., `Backgrounds`, `ProjectCards`, `SkillsTerminal`, `GithubProfile`, `LogoLoop`).
 
-## Learn More
+## 🤝 Let's Collaborate
 
-To learn more about Next.js, take a look at the following resources:
+Feel free to reach out or check out my work on GitHub:
+**GitHub**: [@Aswin-cs](https://github.com/Aswin-cs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*This project is continuously evolving. Stay tuned for more updates!*

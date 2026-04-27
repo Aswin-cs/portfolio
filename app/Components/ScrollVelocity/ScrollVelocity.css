@@ -1,0 +1,31 @@
+.parallax {
+  position: relative;
+  overflow: hidden;
+  width: 100vw; /* Take full viewport width */
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: "Expletus Sans", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: clamp(0px, 0.3vw, 2px);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.scroller span {
+  flex-shrink: 0;
+  padding-right: 2rem;
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+}
