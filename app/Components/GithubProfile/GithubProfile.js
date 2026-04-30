@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, useTrail, animated, config } from 'react-spring';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import GithubIcon from '../icons/GithubIcon';
+import ResumeIcon from '../icons/ResumeIcon';
 import './GithubProfile.css';
+
 
 const GithubProfile = () => {
   const [hoveredGithub, setHoveredGithub] = useState(false);
@@ -32,16 +32,16 @@ const GithubProfile = () => {
 
   const springPropsGithub = useSpring({
     transform: hoveredGithub ? 'scale(1.05) translateY(-5px)' : 'scale(1) translateY(0px)',
-    boxShadow: hoveredGithub 
-      ? '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1)' 
+    boxShadow: hoveredGithub
+      ? '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1)'
       : '0 10px 20px rgba(0, 0, 0, 0.3), 0 0 0px rgba(255, 255, 255, 0)',
     config: config.wobbly
   });
 
   const springPropsResume = useSpring({
     transform: hoveredResume ? 'scale(1.05) translateY(-5px)' : 'scale(1) translateY(0px)',
-    boxShadow: hoveredResume 
-      ? '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1)' 
+    boxShadow: hoveredResume
+      ? '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1)'
       : '0 10px 20px rgba(0, 0, 0, 0.3), 0 0 0px rgba(255, 255, 255, 0)',
     config: config.wobbly
   });
@@ -50,8 +50,8 @@ const GithubProfile = () => {
     <div ref={containerRef} className="github-profile-container">
       <animated.h1 style={trail[0]} className="sync-logic-heading">
         {"SYNC_LOGIC".split("").map((char, index) => (
-          <span 
-            key={index} 
+          <span
+            key={index}
             className="sync-logic-letter"
             style={{ animationDelay: `${index * 0.3}s` }}
           >
@@ -60,19 +60,19 @@ const GithubProfile = () => {
         ))}
       </animated.h1>
       <animated.h3 style={trail[1]} className="sync-logic-subheading">Ready to collaborate with me? Let's build something amazing together.</animated.h3>
-      
+
       <animated.div style={trail[2]} className="action-boxes">
-        <animated.a 
-          href="https://github.com/Aswin-cs" 
-          target="_blank" 
+        <animated.a
+          href="https://github.com/Aswin-cs"
+          target="_blank"
           rel="noopener noreferrer"
-          className="github-profile-box"
+          className="github-profile-box cursor-target"
           style={springPropsGithub}
           onMouseEnter={() => setHoveredGithub(true)}
           onMouseLeave={() => setHoveredGithub(false)}
         >
           <div className="github-icon-wrapper">
-            <FontAwesomeIcon icon={faGithub} className="github-icon" />
+            <GithubIcon isHovered={hoveredGithub} className="github-icon" />
           </div>
           <div className="github-info">
             <span className="github-username">@Aswin-cs</span>
@@ -80,19 +80,20 @@ const GithubProfile = () => {
           </div>
         </animated.a>
 
-        <animated.a 
-          href="/Aswin's_resume.pdf" 
+        <animated.a
+          href="/Aswin's_resume.pdf"
           download="Aswin_Resume.pdf"
-          className="github-profile-box"
+          className="github-profile-box cursor-target"
           style={springPropsResume}
           onMouseEnter={() => setHoveredResume(true)}
           onMouseLeave={() => setHoveredResume(false)}
         >
           <div className="github-icon-wrapper">
-            <FontAwesomeIcon icon={faFilePdf} className="github-icon" />
+            <ResumeIcon isHovered={hoveredResume} className="github-icon" />
           </div>
-          <div className="github-info">
-            <span className="github-username">Resume</span>
+          <div className="github-info ">
+
+            <span className="github-username t">Resume</span>
             <span className="github-cta">Download PDF</span>
           </div>
         </animated.a>

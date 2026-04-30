@@ -4,9 +4,11 @@ import Silk from "./Components/Backgrounds/Silk";
 import GlitchText from "./Components/GlitchText/GlitchText";
 import LogoLoop from "./Components/LogoLoop/LogoLoop";
 import ProjectCards from "./Components/ProjectCards/ProjectCards";
-import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt } from '@fortawesome/free-brands-svg-icons';
 import GithubProfile from "./Components/GithubProfile/GithubProfile";
 import AswinLogicLogo from "./Components/AswinLogicLogo/AswinLogicLogo";
+import TargetCursor from "./Components/TargetCursor/TargetCursor";
+import SkillsIcon from "./Components/icons/SkillsIcon";
 
 const techLogos = [
   { node: <FontAwesomeIcon icon={faReact} />, title: "React", href: "https://react.dev" },
@@ -20,14 +22,16 @@ import ScrollStack, { ScrollStackItem } from "./Components/ScrollStack/ScrollSta
 
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faTerminal, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { useSpring, animated } from 'react-spring';
+import { AnimatedFolderIcon } from "./Components/icons/AnimatedFolderIcon";
 
 const Page = () => {
   const parallaxRef = useRef(null);
   const isScrolling = useRef(false);
   const lastPage = useRef(0);
   const [showNav, setShowNav] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const hideTimeout = useRef(null);
 
   const navAnimation = useSpring({
@@ -159,6 +163,7 @@ const Page = () => {
   return (
     <>
       <Parallax ref={parallaxRef} pages={4} style={{ top: '0', left: '0', background: '#504B55' }}>
+
         {/* Background Layer */}
         <ParallaxLayer offset={0} speed={0} factor={4}>
           <div className="silk-background">
@@ -284,36 +289,54 @@ const Page = () => {
           <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}>
             <AswinLogicLogo style={{ width: 'min(150px, 25vw)' }} color="rgba(255, 255, 255, 0.6)" />
           </div>
+          <TargetCursor
+            spinDuration={3}
+            hideDefaultCursor={false}
+            hoverDuration={0.5}
+            parallaxOn={true}
+          />
           <GithubProfile />
+
         </ParallaxLayer>
       </Parallax>
-
-      <animated.div style={navAnimation} className="navbar">
-        <div className="navbar-item" onClick={() => {
-          lastPage.current = 0;
-          parallaxRef.current.scrollTo(0);
-        }} title="Home">
-          <FontAwesomeIcon icon={faHome} title="Home" />
-        </div>
-        <div className="navbar-item" onClick={() => {
-          lastPage.current = 1;
-          parallaxRef.current.scrollTo(1);
-        }} title="Skills">
-          <FontAwesomeIcon icon={faTerminal} title="Skills" />
-        </div>
-        <div className="navbar-item" onClick={() => {
-          lastPage.current = 2;
-          parallaxRef.current.scrollTo(2);
-        }} title="Projects">
-          <FontAwesomeIcon icon={faFolderOpen} title="Projects" />
-        </div>
-        <div className="navbar-item navbar-logo " onClick={() => {
-          lastPage.current = 3;
-          parallaxRef.current.scrollTo(3);
-        }} title="Contact & GitHub">
-          <AswinLogicLogo color="currentColor" />
-        </div>
-      </animated.div>
+      <>
+        <animated.div style={navAnimation} className="navbar">
+          <div className="navbar-item" onClick={() => {
+            lastPage.current = 0;
+            parallaxRef.current.scrollTo(0);
+          }} title="Home">
+            <FontAwesomeIcon icon={faHome} title="Home" />
+          </div>
+          <div className="navbar-item" onClick={() => {
+            lastPage.current = 1;
+            parallaxRef.current.scrollTo(1);
+          }} title="Skills">
+            <SkillsIcon style={{ width: '1.5rem', height: '1.5rem', scale: "1.2" }} />
+          </div>
+          <div
+            className="navbar-item"
+            onClick={() => {
+              lastPage.current = 2;
+              parallaxRef.current.scrollTo(2);
+            }}
+            onMouseEnter={() => setHoveredItem('projects')}
+            onMouseLeave={() => setHoveredItem(null)}
+            title="Projects"
+          >
+            <AnimatedFolderIcon
+              isOpen={hoveredItem === 'projects'}
+              size="1.2rem"
+              color="currentColor"
+            />
+          </div>
+          <div className="navbar-item navbar-logo" onClick={() => {
+            lastPage.current = 3;
+            parallaxRef.current.scrollTo(3);
+          }} title="Contact & GitHub">
+            <AswinLogicLogo color="currentColor" />
+          </div>
+        </animated.div>
+      </>
     </>
   );
 };

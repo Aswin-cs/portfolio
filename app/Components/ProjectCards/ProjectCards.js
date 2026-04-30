@@ -3,11 +3,12 @@ import { useSpring, animated } from 'react-spring';
 import BorderGlow from '../BorderGlow/BorderGlow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrochip, faBrain, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import GithubIcon from '../icons/GithubIcon';
 import './ProjectCards.css';
 
-const ProjectCard = ({ icon, title, description, stack, delay, githubLink }) => {
+const ProjectCard = ({ icon, title, description, stack, delay, githubLink, isActive, offset, isDesktop }) => {
   const [isVisible, setVisible] = useState(false);
+  const [hasAppeared, setHasAppeared] = useState(false);
   const domRef = useRef();
 
   useEffect(() => {
@@ -26,11 +27,24 @@ const ProjectCard = ({ icon, title, description, stack, delay, githubLink }) => 
     };
   }, []);
 
+  useEffect(() => {
+    if (isVisible && !hasAppeared) {
+      const timer = setTimeout(() => setHasAppeared(true), delay + 600);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, delay, hasAppeared]);
+
   const props = useSpring({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0px)' : 'translateY(50px)',
-    config: { mass: 1, tension: 80, friction: 26 },
-    delay: delay
+    opacity: isVisible ? (isDesktop ? 1 : isActive ? 1 : 0.3) : 0,
+    transform: isVisible 
+      ? (isDesktop 
+          ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)' 
+          : (isActive 
+              ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)' 
+              : `perspective(1200px) translateY(0px) scale(0.85) rotateY(${-offset * 25}deg) translateZ(-50px)`))
+      : 'perspective(1200px) translateY(50px) scale(0.8) rotateY(0deg) translateZ(0px)',
+    config: { mass: 1, tension: 120, friction: 22 },
+    delay: hasAppeared ? 0 : delay
   });
 
   return (
@@ -53,7 +67,7 @@ const ProjectCard = ({ icon, title, description, stack, delay, githubLink }) => 
               <FontAwesomeIcon icon={icon} className="main-icon" />
             </div>
             <a href={githubLink} target="_blank" rel="noopener noreferrer" className="github-icon-container">
-              <FontAwesomeIcon icon={faGithub} className="github-icon" />
+              <GithubIcon className="github-icon" />
             </a>
           </div>
 
@@ -75,18 +89,30 @@ const ProjectCard = ({ icon, title, description, stack, delay, githubLink }) => 
 
 const ProjectCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(true);
 
-  // Auto-switch between project cards every 3 seconds
+  // Check if desktop layout
   useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 900);
+    };
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Auto-switch between project cards every 4 seconds
+  useEffect(() => {
+    if (isDesktop) return; // Only auto-switch on mobile layout
     const interval = setInterval(() => {
       setCurrentIndex(prev => (prev + 1) % 2);
-    }, 3000);
+    }, 4000); // Increased interval for better reading
     return () => clearInterval(interval);
-  }, []);
+  }, [isDesktop]);
 
   const trackProps = useSpring({
     transform: `translateX(-${currentIndex * 100}%)`,
-    config: { tension: 170, friction: 26 }
+    config: { tension: 140, friction: 28 } // Smoother sliding
   });
 
   return (
@@ -99,6 +125,10 @@ const ProjectCards = () => {
           stack={['REACT', 'NODE.JS', 'MONGODB', 'NEXT.JS']}
           delay={100}
           githubLink="https://github.com/Aswin-cs/smart-garbage-system"
+          index={0}
+          isActive={currentIndex === 0}
+          offset={0 - currentIndex}
+          isDesktop={isDesktop}
         />
         <ProjectCard
           icon={faBrain}
@@ -107,6 +137,10 @@ const ProjectCards = () => {
           stack={['NEXT.JS', 'MONGOOSE', 'ZOD', 'NODE.JS']}
           delay={300}
           githubLink="https://github.com/Aswin-cs/review-app"
+          index={1}
+          isActive={currentIndex === 1}
+          offset={1 - currentIndex}
+          isDesktop={isDesktop}
         />
       </animated.div>
 
