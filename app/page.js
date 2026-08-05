@@ -1,14 +1,22 @@
-"use client"
+"use client";
 import React, { useRef, useEffect, useState } from "react";
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { useSpring, animated } from 'react-spring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt } from '@fortawesome/free-brands-svg-icons';
+
 import Silk from "./Components/Backgrounds/Silk";
 import GlitchText from "./Components/GlitchText/GlitchText";
 import LogoLoop from "./Components/LogoLoop/LogoLoop";
 import ProjectCards from "./Components/ProjectCards/ProjectCards";
-import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt } from '@fortawesome/free-brands-svg-icons';
 import GithubProfile from "./Components/GithubProfile/GithubProfile";
 import AswinLogicLogo from "./Components/AswinLogicLogo/AswinLogicLogo";
 import TargetCursor from "./Components/TargetCursor/TargetCursor";
 import SkillsIcon from "./Components/icons/SkillsIcon";
+import { AnimatedFolderIcon } from "./Components/icons/AnimatedFolderIcon";
+import ScrollStack, { ScrollStackItem } from "./Components/ScrollStack/ScrollStack";
+import Loader from "./Components/Loader/Loader";
 
 const techLogos = [
   { node: <FontAwesomeIcon icon={faReact} />, title: "React", href: "https://react.dev" },
@@ -18,13 +26,6 @@ const techLogos = [
   { node: <FontAwesomeIcon icon={faCss3Alt} />, title: "CSS3", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
   { node: <FontAwesomeIcon icon={faGitAlt} />, title: "Git", href: "https://git-scm.com" }
 ];
-import ScrollStack, { ScrollStackItem } from "./Components/ScrollStack/ScrollStack";
-
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
-import { useSpring, animated } from 'react-spring';
-import { AnimatedFolderIcon } from "./Components/icons/AnimatedFolderIcon";
 
 const Page = () => {
   const parallaxRef = useRef(null);
@@ -162,6 +163,7 @@ const Page = () => {
 
   return (
     <>
+      <Loader />
       <Parallax ref={parallaxRef} pages={4} style={{ top: '0', left: '0', background: '#504B55' }}>
 
         {/* Background Layer */}

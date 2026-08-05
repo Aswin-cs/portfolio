@@ -66,6 +66,7 @@ const GithubProfile = () => {
           href="https://github.com/Aswin-cs"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="View Aswin's GitHub Profile"
           className="github-profile-box cursor-target"
           style={springPropsGithub}
           onMouseEnter={() => setHoveredGithub(true)}
@@ -81,8 +82,11 @@ const GithubProfile = () => {
         </animated.a>
 
         <animated.a
-          href="/Aswin's_resume.pdf"
-          download="Aswin_Resume.pdf"
+          href="/Aswin_Vijayan_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Aswin_Vijayan_Resume.pdf"
+          aria-label="Download Aswin's Resume PDF"
           className="github-profile-box cursor-target"
           style={springPropsResume}
           onMouseEnter={() => setHoveredResume(true)}
@@ -91,9 +95,8 @@ const GithubProfile = () => {
           <div className="github-icon-wrapper">
             <ResumeIcon isHovered={hoveredResume} className="github-icon" />
           </div>
-          <div className="github-info ">
-
-            <span className="github-username t">Resume</span>
+          <div className="github-info">
+            <span className="github-username">Resume</span>
             <span className="github-cta">Download PDF</span>
           </div>
         </animated.a>

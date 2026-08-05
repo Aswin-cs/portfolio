@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import BorderGlow from '../BorderGlow/BorderGlow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrochip, faBrain, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faBrain, faTrophy, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import GithubIcon from '../icons/GithubIcon';
 import './ProjectCards.css';
 
@@ -66,7 +66,7 @@ const ProjectCard = ({ icon, title, description, stack, delay, githubLink, isAct
             <div className="main-icon-container">
               <FontAwesomeIcon icon={icon} className="main-icon" />
             </div>
-            <a href={githubLink} target="_blank" rel="noopener noreferrer" className="github-icon-container">
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${title} on GitHub`} className="github-icon-container">
               <GithubIcon className="github-icon" />
             </a>
           </div>
@@ -119,24 +119,24 @@ const ProjectCards = () => {
     <div className="carousel-viewport">
       <animated.div className="projects-track" style={trackProps}>
         <ProjectCard
-          icon={faMicrochip}
-          title="SMART GARBAGE MANAGEMENT"
-          description="An IoT-integrated dashboard for urban waste optimization. Built with a mathematical routing engine and high-concurrency Node.js handlers."
-          stack={['REACT', 'NODE.JS', 'MONGODB', 'NEXT.JS']}
+          icon={faBrain}
+          title="WHAT-IF MAP"
+          description="What-If Map is a futuristic, interactive AI decision-mapping platform built to model, visualize, and analyze multi-branch scenarios. Powered by Google Gemini AI, interactive flowchart engines, and high-performance canvas physics, it helps users explore critical choices, projected outcomes, and cognitive decision lineage."
+          stack={['NEXT.JS', 'REACT', 'GEMINI AI', 'CANVAS PHYSICS', 'NODE.JS']}
           delay={100}
-          githubLink="https://github.com/Aswin-cs/smart-garbage-system"
+          githubLink="https://github.com/Aswin-cs/what-if-map"
           index={0}
           isActive={currentIndex === 0}
           offset={0 - currentIndex}
           isDesktop={isDesktop}
         />
         <ProjectCard
-          icon={faBrain}
-          title="THE IDEA VALIDATOR"
-          description="A niche feedback platform leveraging complex data schemas. Features credibility-weighted voting algorithms for specialized communities."
-          stack={['NEXT.JS', 'MONGOOSE', 'ZOD', 'NODE.JS']}
+          icon={faTrophy}
+          title="SMART STADIUMS & TOURNAMENT OPERATIONS"
+          description="Smart Stadiums & Tournament Operations is a web application built with Next.js, React, and Mongoose. It features user authentication via Next-Auth and integrates Google Generative AI capabilities."
+          stack={['NEXT.JS', 'REACT', 'MONGOOSE', 'NEXT-AUTH', 'GOOGLE AI']}
           delay={300}
-          githubLink="https://github.com/Aswin-cs/review-app"
+          githubLink="https://github.com/Aswin-cs/Smart-Stadiums-and-Tournament-Operations"
           index={1}
           isActive={currentIndex === 1}
           offset={1 - currentIndex}
@@ -146,6 +146,7 @@ const ProjectCards = () => {
 
       <div className="carousel-navigation">
         <button
+          aria-label="Previous Project"
           className={`nav-btn ${currentIndex === 0 ? 'disabled' : ''}`}
           onClick={() => setCurrentIndex(0)}
         >
@@ -156,6 +157,7 @@ const ProjectCards = () => {
           <span className={`indicator ${currentIndex === 1 ? 'active' : ''}`} />
         </div>
         <button
+          aria-label="Next Project"
           className={`nav-btn ${currentIndex === 1 ? 'disabled' : ''}`}
           onClick={() => setCurrentIndex(1)}
         >
