@@ -31,6 +31,17 @@
   align-items: center;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
   animation: pulseGlow 2s ease-in-out infinite alternate;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.loader-logo-wrapper:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.45));
+}
+
+.loader-logo-wrapper:active {
+  transform: scale(0.97);
 }
 
 @keyframes pulseGlow {

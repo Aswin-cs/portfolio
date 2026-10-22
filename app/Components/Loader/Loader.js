@@ -23,6 +23,7 @@ const Loader = ({ onComplete }) => {
 
     let timer1 = null;
     let timer2 = null;
+    const startTime = Date.now();
 
     const interval = setInterval(() => {
       currentProgress += Math.floor(Math.random() * 12) + 5;
@@ -37,14 +38,17 @@ const Loader = ({ onComplete }) => {
         clearInterval(interval);
         setProgress(100);
 
-        // Allow a slight pause at 100% for smooth visual response
+        // Allow the intro logo staging sequence (1.00s - 1.75s) to complete before fading
+        const elapsed = Date.now() - startTime;
+        const delayBeforeFade = Math.max(300, 1850 - elapsed);
+
         timer1 = setTimeout(() => {
           setIsFading(true);
           timer2 = setTimeout(() => {
             setIsDone(true);
             if (onComplete) onComplete();
           }, 600);
-        }, 300);
+        }, delayBeforeFade);
       } else {
         setProgress(currentProgress);
       }

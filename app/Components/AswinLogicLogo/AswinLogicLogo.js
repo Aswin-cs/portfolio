@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
+// Audio sources in /public/sfx
+const SFX_PULSE = '/sfx/Precision_15-pulse_1st.wav';
+
+const AswinLogicLogo = ({
+  className = '',
+  style = {},
+  color = "#ffffff",
+  sound = true,
+  playOnMount = false
+}) => {
   const [playCount, setPlayCount] = useState(0);
+  const timeoutsRef = useRef([]);
+  const activeAudiosRef = useRef([]);
 
   const sigma = [
     { x: 60, y: 10 }, { x: 70, y: 10 }, { x: 80, y: 10 }, { x: 90, y: 10 }, { x: 100, y: 10 },
@@ -13,16 +24,89 @@ const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
     { x: 60, y: 70 }, { x: 70, y: 70 }, { x: 80, y: 70 }, { x: 90, y: 70 }, { x: 100, y: 70 }
   ];
 
-  const handleClick = () => {
-    setPlayCount(c => c + 1);
-    // Haptic pattern: 15 short bursts matching each sigma pixel pop (50ms intervals)
-    if (navigator.vibrate) {
-      navigator.vibrate([
-        15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
-        15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
-        15, 35, 15, 35, 15, 35, 15, 35, 15
-      ]);
+  const triggerHaptic = useCallback(() => {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      try {
+        navigator.vibrate([
+          15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
+          15, 35, 15, 35, 15, 35, 15, 35, 15, 35,
+          15, 35, 15, 35, 15, 35, 15, 35, 15
+        ]);
+      } catch (e) {}
     }
+  }, []);
+
+  const clearPendingSounds = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+    activeAudiosRef.current.forEach((audio) => {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {}
+    });
+    activeAudiosRef.current = [];
+  }, []);
+
+  const playAudio = useCallback((src, volume = 0.6) => {
+    if (!sound || typeof window === 'undefined') return;
+    try {
+      const audio = new Audio(src);
+      audio.volume = volume;
+      activeAudiosRef.current.push(audio);
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser policy blocks autoplay, unlock on the first user interaction
+          const unlock = () => {
+            audio.play().catch(() => {});
+            window.removeEventListener('pointerdown', unlock);
+            window.removeEventListener('keydown', unlock);
+          };
+          window.addEventListener('pointerdown', unlock, { once: true });
+          window.addEventListener('keydown', unlock, { once: true });
+        });
+      }
+      audio.onended = () => {
+        activeAudiosRef.current = activeAudiosRef.current.filter((a) => a !== audio);
+      };
+    } catch (e) {}
+  }, [sound]);
+
+  const triggerAudioSequence = useCallback((isInitial = false) => {
+    clearPendingSounds();
+    if (!sound) return;
+
+    if (isInitial) {
+      // File 1 (1.00s – 1.75s): The 15-pixel Sigma (\Sigma) staging arpeggio at 20Hz (50ms intervals)
+      const t1 = setTimeout(() => {
+        playAudio(SFX_PULSE, 0.6);
+        triggerHaptic();
+      }, 1000);
+
+      timeoutsRef.current.push(t1);
+    } else {
+      // Immediate playback matching Sigma pixel pop (0s to 0.75s) and navigator.vibrate
+      playAudio(SFX_PULSE, 0.6);
+      triggerHaptic();
+    }
+  }, [clearPendingSounds, playAudio, sound, triggerHaptic]);
+
+  useEffect(() => {
+    if (playOnMount) {
+      triggerAudioSequence(true);
+    }
+
+    return () => {
+      // Clear pending timers if unmounted before 1.0s
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
+  }, [playOnMount, triggerAudioSequence]);
+
+  const triggerInteraction = () => {
+    setPlayCount((c) => c + 1);
+    triggerAudioSequence(false);
   };
 
   return (
@@ -30,10 +114,13 @@ const AswinLogicLogo = ({ className = '', style = {}, color = "#ffffff" }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-10 -10 220 120"
       className={className}
-      style={{ display: 'block', maxWidth: '100%', height: 'auto', cursor: 'pointer', ...style }}
-      onMouseEnter={() => setPlayCount(c => c + 1)}
-      onClick={handleClick}
+      style={{ display: 'block', maxWidth: '100%', height: 'auto', cursor: 'pointer', pointerEvents: 'all', ...style }}
+      onMouseEnter={triggerInteraction}
+      onClick={triggerInteraction}
+      onTouchStart={triggerInteraction}
     >
+      {/* Transparent hit area ensuring full click/hover coverage */}
+      <rect x="-10" y="-10" width="220" height="120" fill="transparent" />
       <style>
         {`
           .al-slash-group {
