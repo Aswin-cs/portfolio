@@ -22,6 +22,37 @@
   }
 }
 
+.logoloop-container {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .logoloop-container {
+    height: 70px;
+  }
+
+  .logoloop {
+    --logoloop-logoHeight: 44px !important;
+    --logoloop-gap: 36px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoloop-container {
+    height: 52px;
+  }
+
+  .logoloop {
+    --logoloop-logoHeight: 28px !important;
+    --logoloop-gap: 22px !important;
+  }
+}
+
 .logoloop__track {
   display: flex;
   width: max-content;

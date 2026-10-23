@@ -17,7 +17,7 @@ const projects = [
   },
   {
     icon: faScaleBalanced,
-    title: "JURISAI — LEGAL INTELLIGENCE & CONTRACT RISK ASSESSMENT PLATFORM",
+    title: "JURISAI",
     description: "JurisAI is an AI-powered legal intelligence engine designed to provide rapid contract risk assessment, clause-by-clause statutory analysis, interactive follow-up legal consultation, and executive summary exports for individuals, legal professionals, and business operators.",
     stack: ['NEXT.JS', 'GEMINI AI', 'REACT', 'RAG ENGINE', 'MONGOOSE'],
     delay: 200,
@@ -25,9 +25,9 @@ const projects = [
   },
   {
     icon: faRecycle,
-    title: "SAFAIWATCH — CIVIC SANITATION & WASTE MANAGEMENT PLATFORM",
+    title: "SAFAIWATCH",
     description: "SafaiWatch is a full-stack civic sanitation platform to report, verify, and clean waste hotspots in real time. Featuring interactive Leaflet maps, Socket.IO live updates, and Google Gemini AI spot verification, it delivers an end-to-end urban cleanliness tracking and community participation system.",
-    stack: ['NEXT.JS', 'REACT', 'SOCKET.IO', 'LEAFLET', 'GEMINI AI', 'NODE.JS', 'MONGODB'],
+    stack: ['NEXT.JS', 'SOCKET.IO', 'GEMINI AI', 'NODE.JS', 'MONGODB'],
     delay: 300,
     githubLinks: [
       { label: 'Frontend', url: 'https://github.com/Aswin-cs/safaiwatch-frontend' },
@@ -75,12 +75,12 @@ const ProjectCard = ({ icon, title, description, stack, delay, githubLink, githu
 
   const props = useSpring({
     opacity: isVisible ? (isDesktop ? 1 : isActive ? 1 : 0.3) : 0,
-    transform: isVisible 
-      ? (isDesktop 
-          ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)' 
-          : (isActive 
-              ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)' 
-              : `perspective(1200px) translateY(0px) scale(0.85) rotateY(${-offset * 25}deg) translateZ(-50px)`))
+    transform: isVisible
+      ? (isDesktop
+        ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)'
+        : (isActive
+          ? 'perspective(1200px) translateY(0px) scale(1) rotateY(0deg) translateZ(0px)'
+          : `perspective(1200px) translateY(0px) scale(0.85) rotateY(${-offset * 25}deg) translateZ(-50px)`))
       : 'perspective(1200px) translateY(50px) scale(0.8) rotateY(0deg) translateZ(0px)',
     config: { mass: 1, tension: 120, friction: 22 },
     delay: hasAppeared ? 0 : delay

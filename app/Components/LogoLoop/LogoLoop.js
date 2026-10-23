@@ -19,9 +19,11 @@ const useResizeObserver = (callback, elements, dependencies) => {
       observer.observe(ref.current);
       return observer;
     });
+    window.addEventListener('resize', callback);
     callback();
     return () => {
       observers.forEach(observer => observer?.disconnect());
+      window.removeEventListener('resize', callback);
     };
   }, [callback, elements, dependencies]);
 };
@@ -196,8 +198,8 @@ export const LogoLoop = memo(
 
     const cssVariables = useMemo(
       () => ({
-        '--logoloop-gap': `${gap}px`,
-        '--logoloop-logoHeight': `${logoHeight}px`,
+        '--logoloop-gap': toCssLength(gap) ?? '32px',
+        '--logoloop-logoHeight': toCssLength(logoHeight) ?? '28px',
         ...(fadeOutColor && { '--logoloop-fadeColor': fadeOutColor })
       }),
       [gap, logoHeight, fadeOutColor]

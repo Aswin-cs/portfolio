@@ -23,6 +23,7 @@ import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt, faPython } from 
 
 import ColorBends from "./Components/ColorBends/ColorBends";
 import TechText from "./Components/TechText/TechText";
+import WarpText from "./Components/WarpText/WarpText";
 import LogoLoop from "./Components/LogoLoop/LogoLoop";
 import ProjectCards from "./Components/ProjectCards/ProjectCards";
 import GithubProfile from "./Components/GithubProfile/GithubProfile";
@@ -31,7 +32,74 @@ import TargetCursor from "./Components/TargetCursor/TargetCursor";
 import SkillsIcon from "./Components/icons/SkillsIcon";
 import { AnimatedFolderIcon } from "./Components/icons/AnimatedFolderIcon";
 import ScrollStack, { ScrollStackItem } from "./Components/ScrollStack/ScrollStack";
+import SkillCard from "./Components/SkillCard/SkillCard";
 import Loader from "./Components/Loader/Loader";
+
+const programmingSkillsData = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "JavaScript", proficiency: 5 },
+      { name: "TypeScript", proficiency: 4 },
+      { name: "HTML", proficiency: 5 },
+      { name: "CSS", proficiency: 4 },
+    ]
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "Python", proficiency: 4 },
+      { name: "FastAPI", proficiency: 4 },
+      { name: "Node.js", proficiency: 5 },
+      { name: "Express.js", proficiency: 4 },
+      { name: "REST APIs", proficiency: 5 },
+    ]
+  },
+  {
+    title: "Database",
+    skills: [
+      { name: "SQL", proficiency: 4 },
+      { name: "PostgreSQL", proficiency: 4 },
+      { name: "MongoDB", proficiency: 3 },
+      { name: "Redis", proficiency: 3 },
+    ]
+  },
+  {
+    title: "Systems",
+    skills: [
+      { name: "C++", proficiency: 3 },
+      { name: "C", proficiency: 3 },
+    ]
+  }
+];
+
+const specializedSkillsData = [
+  {
+    title: "Generative AI",
+    skills: [
+      { name: "Gemini Models", proficiency: 5 },
+      { name: "RAG Context", proficiency: 4 },
+      { name: "Structured Output", proficiency: 5 },
+    ]
+  },
+  {
+    title: "IoT & Real-Time",
+    skills: [
+      { name: "WebSockets", proficiency: 5 },
+      { name: "Live Event Streams", proficiency: 4 },
+      { name: "Socket.IO", proficiency: 5 },
+    ]
+  },
+  {
+    title: "Tooling & DevOps",
+    skills: [
+      { name: "Git / GitHub", proficiency: 5 },
+      { name: "Postman", proficiency: 4 },
+      { name: "Vercel Deploy", proficiency: 4 },
+      { name: "Antigravity IDE", proficiency: 5 },
+    ]
+  }
+];
 
 const techLogos = [
   { node: <FontAwesomeIcon icon={faNodeJs} />, title: "Node.js", href: "https://nodejs.org" },
@@ -225,22 +293,27 @@ const Page = () => {
           style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2vh' }}
         >
           <AswinLogicLogo style={{ width: 'min(200px, 30vw)', marginBottom: '1rem' }} color="rgba(255, 255, 255, 0.8)" />
-          <div style={{ width: '90%', maxWidth: '1000px', height: '160px', position: 'relative' }}>
-            <TechText
-              text="WELCOME TO MY PORTFOLIO"
-              fontFamily="Expletus Sans, sans-serif"
-              fontWeight={600}
-              fontSize={120}
+          <div style={{ width: '90%', maxWidth: '900px', height: 'clamp(200px, 32vh, 320px)', position: 'relative' }}>
+            <WarpText
+              text={"WELCOME \n TO MY \n PORTFOLIO"}
+              warpStrength={0.08}
+              warpScale={1.7}
+              speed={0.55}
+              lens="bulge"
+              pointerInfluence={0.42}
+              pointerStrength={0.38}
+              refraction={0.018}
+              chromatic={0.35}
+              idleDrift={0.2}
+              ripple
+              clickRipple
+              intro
+              lineHeight={1.05}
+              fontSize="clamp(3rem, 10vw, 8rem)"
+              fontWeight={800}
+              style={{ height: '100%', width: '100%' }}
               color="#ffffff"
-              accentColor="#ffffff"
-              reveal="letter"
-              dashLength={4}
-              dashGap={2}
-              specks={15}
-              intro="none"
-              introDuration={2}
-              clickKick
-              guides={false}
+              letterSpacing="-0.04em"
             />
           </div>
         </ParallaxLayer>
@@ -253,216 +326,19 @@ const Page = () => {
         >
           <ScrollStack>
             <ScrollStackItem>
-              <div className="bento-skill-card card-theme-cyan">
-                <div className="bento-header">
-                  <div className="bento-header-left">
-                    <div className="bento-icon-badge">
-                      <FontAwesomeIcon icon={faLayerGroup} />
-                    </div>
-                    <div className="bento-header-info">
-                      <span className="bento-card-tag">01 / Full-Stack Platform</span>
-                      <h3 className="bento-card-title">Core Development Stack</h3>
-                    </div>
-                  </div>
-                  <span className="bento-header-badge">Production Architecture</span>
-                </div>
-
-                <div className="bento-grid">
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faCode} />
-                      <span>Frontend Architecture</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill"><FontAwesomeIcon icon={faReact} /> React.js</span>
-                      <span className="bento-pill"><FontAwesomeIcon icon={faReact} /> Next.js (App Router)</span>
-                      <span className="bento-pill"><FontAwesomeIcon icon={faHtml5} /> HTML5 / CSS3</span>
-                      <span className="bento-pill"><FontAwesomeIcon icon={faJs} /> JavaScript (ES6+)</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faServer} />
-                      <span>Backend & Microservices</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill"><FontAwesomeIcon icon={faNodeJs} /> Node.js</span>
-                      <span className="bento-pill">Express.js</span>
-                      <span className="bento-pill">FastAPI</span>
-                      <span className="bento-pill">RESTful API Architecture</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faDatabase} />
-                      <span>Database & Persistence</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">MongoDB</span>
-                      <span className="bento-pill">Mongoose Schemas</span>
-                      <span className="bento-pill">PostgreSQL</span>
-                      <span className="bento-pill">Connection Pooling</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faTerminal} />
-                      <span>Core Languages</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill"><FontAwesomeIcon icon={faPython} /> Python</span>
-                      <span className="bento-pill">C</span>
-                      <span className="bento-pill">C++</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SkillCard
+                title="Programming skills"
+                subtitle="Languages and databases I use, grouped by where they run."
+                categories={programmingSkillsData}
+              />
             </ScrollStackItem>
 
             <ScrollStackItem>
-              <div className="bento-skill-card card-theme-violet">
-                <div className="bento-header">
-                  <div className="bento-header-left">
-                    <div className="bento-icon-badge">
-                      <FontAwesomeIcon icon={faMicrochip} />
-                    </div>
-                    <div className="bento-header-info">
-                      <span className="bento-card-tag">02 / Theoretical & Applied Systems</span>
-                      <h3 className="bento-card-title">Engineering & Systems Logic</h3>
-                    </div>
-                  </div>
-                  <span className="bento-header-badge">Foundations & Tooling</span>
-                </div>
-
-                <div className="bento-grid bento-grid-3col">
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faSquareRootVariable} />
-                      <span>Foundational Math</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">Abstract Algebra</span>
-                      <span className="bento-pill">Graph Theory</span>
-                      <span className="bento-pill">Linear Algebra</span>
-                      <span className="bento-pill">Discrete Mathematics</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faCubes} />
-                      <span>Computer Science Logic</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">Data Structures (DSA)</span>
-                      <span className="bento-pill">Algorithm Analysis</span>
-                      <span className="bento-pill">System Design</span>
-                      <span className="bento-pill">State Machines</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-cell">
-                    <div className="bento-cell-title">
-                      <FontAwesomeIcon icon={faWrench} />
-                      <span>Production Tooling</span>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill"><FontAwesomeIcon icon={faGitAlt} /> Git / GitHub</span>
-                      <span className="bento-pill">Vercel Deployment</span>
-                      <span className="bento-pill">Postman API Testing</span>
-                      <span className="bento-pill">Antigravity IDE</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ScrollStackItem>
-
-            <ScrollStackItem>
-              <div className="bento-skill-card card-theme-emerald">
-                <div className="bento-header">
-                  <div className="bento-header-left">
-                    <div className="bento-icon-badge">
-                      <FontAwesomeIcon icon={faBolt} />
-                    </div>
-                    <div className="bento-header-info">
-                      <span className="bento-card-tag">03 / Emerging Capabilities & R&D</span>
-                      <h3 className="bento-card-title">Niche Specializations</h3>
-                    </div>
-                  </div>
-                  <span className="bento-header-badge">AI, IoT & Analytics</span>
-                </div>
-
-                <div className="bento-grid bento-grid-3col">
-                  <div className="bento-feature-cell">
-                    <div>
-                      <div className="bento-feature-top">
-                        <div className="bento-feature-icon">
-                          <FontAwesomeIcon icon={faNetworkWired} />
-                        </div>
-                        <div className="bento-feature-heading">
-                          <span className="bento-feature-title">IoT & Real-Time</span>
-                          <span className="bento-feature-subtitle">Telemetry Ingestion</span>
-                        </div>
-                      </div>
-                      <p className="bento-feature-desc" style={{ marginTop: '0.85rem' }}>
-                        High-throughput telemetry handling and full-duplex live synchronization.
-                      </p>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">MQTT Protocols</span>
-                      <span className="bento-pill">WebSockets</span>
-                      <span className="bento-pill">Live Event Streams</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-feature-cell">
-                    <div>
-                      <div className="bento-feature-top">
-                        <div className="bento-feature-icon">
-                          <FontAwesomeIcon icon={faBrain} />
-                        </div>
-                        <div className="bento-feature-heading">
-                          <span className="bento-feature-title">Generative AI</span>
-                          <span className="bento-feature-subtitle">Agentic Architectures</span>
-                        </div>
-                      </div>
-                      <p className="bento-feature-desc" style={{ marginTop: '0.85rem' }}>
-                        Integrating generative AI reasoning, RAG context pipelines, and structured inference into web ecosystems.
-                      </p>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">Gemini Models</span>
-                      <span className="bento-pill">RAG Pipelines</span>
-                      <span className="bento-pill">Structured Output</span>
-                    </div>
-                  </div>
-
-                  <div className="bento-feature-cell">
-                    <div>
-                      <div className="bento-feature-top">
-                        <div className="bento-feature-icon">
-                          <FontAwesomeIcon icon={faChartLine} />
-                        </div>
-                        <div className="bento-feature-heading">
-                          <span className="bento-feature-title">Data Science</span>
-                          <span className="bento-feature-subtitle">Foundations to Modeling</span>
-                        </div>
-                      </div>
-                      <p className="bento-feature-desc" style={{ marginTop: '0.85rem' }}>
-                        Transitioning foundational mathematics, linear algebra, and graph theory into data modeling pipelines.
-                      </p>
-                    </div>
-                    <div className="bento-pills">
-                      <span className="bento-pill">Data Modeling</span>
-                      <span className="bento-pill">Statistical Analysis</span>
-                      <span className="bento-pill">Graph Inference</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SkillCard
+                title="Engineering & AI Systems"
+                subtitle="Agentic AI workflows, real-time telemetry, and production deployment."
+                categories={specializedSkillsData}
+              />
             </ScrollStackItem>
           </ScrollStack>
         </ParallaxLayer>
@@ -473,7 +349,7 @@ const Page = () => {
           speed={0.5}
           style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column', width: '100vw', paddingTop: '8vh', gap: '4vh' }}
         >
-          <div style={{ width: '100%', height: '120px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+          <div className="logoloop-container">
             <LogoLoop
               logos={techLogos}
               speed={120}
