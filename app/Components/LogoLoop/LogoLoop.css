@@ -3,7 +3,7 @@
 
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 28px;
-  --logoloop-fadeColorAuto: #00000000;
+  --logoloop-fadeColorAuto: #ff000000;
 }
 
 .logoloop--vertical {
@@ -135,12 +135,12 @@
 
 .logoloop--fade::before {
   left: 0;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0), rgba(12, 0, 116, 0))
 }
 
 .logoloop--fade::after {
   right: 0;
-  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))
+  background: linear-gradient(to left, transparent, rgba(16, 40, 173, 0), transparent)
 }
 
 .logoloop--vertical.logoloop--fade::before,
