@@ -59,7 +59,7 @@
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: center;
@@ -141,7 +141,7 @@
 
 .divider {
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgb(255, 255, 255);
   margin: 1.1rem 0;
   width: 100%;
 }
@@ -153,13 +153,13 @@
 }
 
 .stack-pill {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 0.35rem 1rem;
   border-radius: 20px;
   font-size: 0.62rem;
   font-weight: 700;
-  color: #dddddd;
+  color: #000000;
   letter-spacing: 1px;
 }
 

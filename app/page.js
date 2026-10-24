@@ -5,24 +5,10 @@ import { useSpring, animated } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
-  faLayerGroup,
-  faCode,
-  faServer,
-  faDatabase,
-  faTerminal,
-  faMicrochip,
-  faSquareRootVariable,
-  faCubes,
-  faWrench,
-  faBolt,
-  faNetworkWired,
-  faBrain,
-  faChartLine
 } from '@fortawesome/free-solid-svg-icons';
 import { faReact, faNodeJs, faJs, faHtml5, faCss3Alt, faGitAlt, faPython } from '@fortawesome/free-brands-svg-icons';
 
 import ColorBends from "./Components/ColorBends/ColorBends";
-import TechText from "./Components/TechText/TechText";
 import WarpText from "./Components/WarpText/WarpText";
 import LogoLoop from "./Components/LogoLoop/LogoLoop";
 import ProjectCards from "./Components/ProjectCards/ProjectCards";
